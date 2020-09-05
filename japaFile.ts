@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import execa from 'execa'
-import { join, isAbsolute, sep } from 'path'
+import { join } from 'path'
 import getPort from 'get-port'
 import { configure } from 'japa'
 import sourceMapSupport from 'source-map-support'
@@ -9,21 +9,6 @@ process.env.NODE_ENV = 'testing'
 process.env.DB_NAME = 'smartcycle-test'
 process.env.ADONIS_ACE_CWD = join(__dirname, '..')
 sourceMapSupport.install({ handleUncaughtExceptions: false })
-
-function getTestFiles () {
-  let userDefined = process.argv.slice(2)[0]
-  if (!userDefined) {
-    return 'build/test/**/*.spec.js'
-  }
-
-  if (isAbsolute(userDefined)) {
-    userDefined = userDefined.endsWith('.ts')
-      ? userDefined.replace(`${join(__dirname, '..')}${sep}`, '')
-      : userDefined.replace(`${join(__dirname)}${sep}`, '')
-  }
-
-  return `build/${userDefined.replace(/\.ts$|\.js$/, '')}.js`
-}
 
 async function runMigrations () {
   await execa.node('ace', ['migration:run'], {
@@ -41,9 +26,10 @@ async function startHttpServer () {
 }
 
 configure({
-  files: getTestFiles(),
+  files: [
+    'build/test/**/*.spec.js',
+  ],
   before: [
     runMigrations, startHttpServer,
   ],
-  after: [ rollbackMigrations ],
-})
+  after: [ rollbackMigrations ]})
