@@ -19,4 +19,18 @@ test.group('Session', () => {
 
     assert.exists(body)
   })
+
+  test('it should create a new token', async assert => {
+    const payload = {
+      email: 'test@example.com',
+      password: 'testpassword',
+    }
+
+    const { body } = await supertest(BASE_URL)
+      .post('/v1/client/auth/signin')
+      .send(payload)
+      .expect(201)
+
+    assert.exists(body.token)
+  })
 })
