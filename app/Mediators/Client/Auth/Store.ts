@@ -9,7 +9,7 @@ const Store = async ({ nome, email, password, tipo }: User) => {
 
     return { status: 201, data: user }
   } else {
-    return { status: 400, data: { error: 'User already exists' } }
+    return { status: 400, data: { error: 'Email já em uso' } }
   }
 }
 
