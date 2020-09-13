@@ -27,6 +27,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.post('/store', 'ItemController.store')
+  Route.get('/index', 'ItemController.index')
 }).prefix('v1/client/item').middleware('auth')
 
 Route.group(() => {
