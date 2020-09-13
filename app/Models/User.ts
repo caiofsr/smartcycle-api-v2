@@ -36,7 +36,7 @@ export default class User extends BaseModel {
   @column()
   public tipo: string
 
-  @column()
+  @column({ serializeAs: null })
   public password: string
 
   @column()
