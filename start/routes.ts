@@ -28,3 +28,7 @@ Route.group(() => {
 Route.group(() => {
   Route.post('/store', 'ItemController.store')
 }).prefix('v1/client/item').middleware('auth')
+
+Route.group(() => {
+  Route.put('/edit', 'UserController.update')
+}).prefix('v1/client/profile').middleware('auth')

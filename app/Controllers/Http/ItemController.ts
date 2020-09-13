@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Store from 'App/Mediators/Client/donor/Store'
+import Store from 'App/Mediators/Client/Donor/Store'
 
 export default class ItemsController {
   public async store ({ request, response, auth }: HttpContextContract) {
