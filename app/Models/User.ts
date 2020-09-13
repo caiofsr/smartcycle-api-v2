@@ -31,6 +31,9 @@ export default class User extends BaseModel {
   public bairro?: string
 
   @column()
+  public endereco?: string
+
+  @column()
   public tipo: string
 
   @column()

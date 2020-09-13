@@ -11,6 +11,7 @@ export default class UsersSchema extends BaseSchema {
       table.string('estado').nullable()
       table.string('cidade').nullable()
       table.string('bairro').nullable()
+      table.string('endereco').nullable()
       table.enu('tipo', ['doador', 'coletor']).notNullable()
       table.string('password', 180).notNullable()
       table.string('remember_me_token').nullable()
