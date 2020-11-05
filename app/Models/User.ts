@@ -6,7 +6,10 @@ import {
   beforeSave,
   BaseModel,
   beforeCreate,
+  hasMany,
+  HasMany,
 } from '@ioc:Adonis/Lucid/Orm'
+import Item from './Item'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -28,9 +31,12 @@ export default class User extends BaseModel {
   public bairro?: string
 
   @column()
-  public tipo: string
+  public endereco?: string
 
   @column()
+  public tipo: string
+
+  @column({ serializeAs: null })
   public password: string
 
   @column()
@@ -53,4 +59,7 @@ export default class User extends BaseModel {
   public static createId (user: User) {
     user.id = uuidv4()
   }
+
+  @hasMany(() => Item)
+  public items: HasMany<typeof Item>
 }

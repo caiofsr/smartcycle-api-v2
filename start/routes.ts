@@ -24,3 +24,12 @@ Route.group(() => {
   Route.post('/signup', 'AuthController.store')
   Route.post('/signin', 'AuthController.login')
 }).prefix('v1/client/auth')
+
+Route.group(() => {
+  Route.post('/store', 'ItemController.store')
+  Route.get('/index', 'ItemController.index')
+}).prefix('v1/client/item').middleware('auth')
+
+Route.group(() => {
+  Route.put('/edit', 'UserController.update')
+}).prefix('v1/client/profile').middleware('auth')
