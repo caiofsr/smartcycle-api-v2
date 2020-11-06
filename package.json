@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "node ace build && node build/server.js",
-    "start": "node ace serve --watch",
+    "start": "node ace build && node build/server.js",
+    "dev": "node ace serve --watch",
     "lint": "eslint . --ext=.ts",
     "test": "node build/japaFile.js"
   },
